@@ -55,9 +55,8 @@ function toISODate(date: Date): string {
 function clampDate(date: Date): Date {
   const year = date.getFullYear();
   const start = new Date(year, 0, 1);
-  const end = new Date(year, 11, 31);
   if (date < start) return start;
-  if (date > end) return end;
+  if (date > today) return today;
   return date;
 }
 
@@ -152,13 +151,12 @@ function updateNavState() {
   if (!prevBtn || !nextBtn) return;
   const year = activeDate.getFullYear();
   const start = new Date(year, 0, 1);
-  const end = new Date(year, 11, 31);
   prevBtn.disabled = activeDate.getTime() === start.getTime();
-  nextBtn.disabled = activeDate.getTime() === end.getTime();
+  nextBtn.disabled = activeDate.getTime() === today.getTime();
   prevBtn.setAttribute("aria-disabled", String(prevBtn.disabled));
   nextBtn.setAttribute("aria-disabled", String(nextBtn.disabled));
   prevBtn.title = prevBtn.disabled ? "Cannot go before January 1" : "";
-  nextBtn.title = nextBtn.disabled ? "Cannot go past December 31" : "";
+  nextBtn.title = nextBtn.disabled ? "Cannot go past today" : "";
 }
 
 function updateTodayState() {
@@ -176,7 +174,7 @@ function updateTodayState() {
     return;
   }
   if (isEnd) {
-    dayIndicatorEl.textContent = "End of year";
+    dayIndicatorEl.textContent = "Today";
     return;
   }
   dayIndicatorEl.textContent = "";
