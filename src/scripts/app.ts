@@ -13,7 +13,7 @@ type DayEntry = {
 
 type QuoteData = Record<string, DayEntry>;
 
-const DATA_URL = "/data/2026.json";
+const DATA_URL = `/data/${new Date().getFullYear()}.json`;
 const SUPPORTED_LANGS: LanguageKey[] = ["en", "es", "eu", "fr", "de", "pt-BR"];
 const STORAGE_THEME_KEY = "sportspark_theme";
 const STORAGE_LANG_KEY = "sportspark_lang";
