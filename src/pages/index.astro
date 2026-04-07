@@ -1,5 +1,4 @@
 ---
-import app from "../scripts/app.ts?url";
 import "../styles/global.css";
 ---
 <!doctype html>
@@ -103,6 +102,8 @@ import "../styles/global.css";
       </noscript>
     </div>
 
-    <script type="module" src={app}></script>
+    <script>
+      import "../scripts/app.ts";
+    </script>
   </body>
 </html>
