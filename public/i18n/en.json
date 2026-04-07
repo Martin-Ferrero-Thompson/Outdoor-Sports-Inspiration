@@ -20,6 +20,7 @@
   "content_fallback_note": "Showing EN (missing {lang})",
   "retry": "Retry",
   "prompt_heading": "Thoughtful Prompt",
+  "prompt_training_bridge": "The quote and this prompt are meant to work together. The quote offers a spark — a feeling or idea to sit with — while the prompt gives it direction, inviting you to connect that same spirit to a specific aspect of your training: a session you are preparing for, a challenge you are working through, or a quality you are trying to strengthen.",
   "prompt_guide": "Let the prompt guide a short reflection, then carry one action into your training today.",
   "section_daily_spark": "Daily Spark Quote",
   "section_reflection_prompt": "Thoughtful Prompt",

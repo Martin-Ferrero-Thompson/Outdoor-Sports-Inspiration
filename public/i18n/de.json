@@ -20,6 +20,7 @@
   "content_fallback_note": "EN wird angezeigt ({lang} fehlt)",
   "retry": "Erneut versuchen",
   "prompt_heading": "Reflexionsfrage",
+  "prompt_training_bridge": "Das Zitat und diese Reflexionsfrage sind dazu gedacht, gemeinsam zu wirken. Das Zitat gibt einen Funken — ein Gefühl oder eine Idee, die man mit sich trägt — während die Frage ihm eine Richtung gibt und dazu einlädt, denselben Geist mit einem konkreten Aspekt des Trainings zu verbinden: eine Einheit, auf die man sich vorbereitet, eine Herausforderung, an der man arbeitet oder eine Eigenschaft, die man stärken möchte.",
   "prompt_guide": "Lass die Frage eine kurze Reflexion leiten, und nimm eine Handlung in dein heutiges Training mit.",
   "section_daily_spark": "Zitat des Tages",
   "section_reflection_prompt": "Reflexionsfrage",

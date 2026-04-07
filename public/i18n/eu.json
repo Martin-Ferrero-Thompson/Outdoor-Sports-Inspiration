@@ -20,6 +20,7 @@
   "content_fallback_note": "EN erakusten ({lang} falta da)",
   "retry": "Berriro saiatu",
   "prompt_heading": "Hausnarketa-galdera",
+  "prompt_training_bridge": "Aipua eta galdera hau batera lan egiteko diseinatuta daude. Aipuak txinparta bat eskaintzen du — berekin eramandako sentimendu edo ideia bat — eta galderak norabidea ematen dio, kirol-espiritu hori entrenamenduko alderdi konkreturen batekin lotzera gonbidatuz: prestatzen ari zaren saio bat, lantzen ari zaren erronka bat edo indartu nahi duzun ezaugarri bat.",
   "prompt_guide": "Utzi galderak hausnarketa laburra gidatzea, eta gaur ekarri ekintza bat zure entrenamendura.",
   "section_daily_spark": "Eguneko Aipua",
   "section_reflection_prompt": "Hausnarketa-galdera",

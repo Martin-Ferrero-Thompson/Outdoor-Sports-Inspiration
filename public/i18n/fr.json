@@ -20,6 +20,7 @@
   "content_fallback_note": "Affichage EN ({lang} manquant)",
   "retry": "Réessayer",
   "prompt_heading": "Invitation à la Réflexion",
+  "prompt_training_bridge": "La citation et cette invitation sont conçues pour fonctionner ensemble. La citation offre une étincelle — un sentiment ou une idée à garder en tête — tandis que l'invitation lui donne une direction, vous invitant à relier ce même élan à un aspect concret de votre entraînement : une séance que vous préparez, un défi que vous traversez ou une qualité que vous cherchez à renforcer.",
   "prompt_guide": "Laissez l'invitation guider une courte réflexion, puis portez une action dans votre entraînement d'aujourd'hui.",
   "section_daily_spark": "Citation du Jour",
   "section_reflection_prompt": "Invitation à la Réflexion",

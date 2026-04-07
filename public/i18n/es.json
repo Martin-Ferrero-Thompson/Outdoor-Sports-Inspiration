@@ -20,6 +20,7 @@
   "content_fallback_note": "Mostrando EN (falta {lang})",
   "retry": "Reintentar",
   "prompt_heading": "Reflexión del Día",
+  "prompt_training_bridge": "La cita y esta reflexión están pensadas para funcionar juntas. La cita ofrece una chispa — un sentimiento o idea con la que quedarte — mientras que la reflexión le da dirección, invitándote a conectar ese mismo espíritu con un aspecto concreto de tu entrenamiento: una sesión que estás preparando, un reto que estás trabajando o una cualidad que quieres fortalecer.",
   "prompt_guide": "Deja que la reflexión te guíe, y lleva una acción a tu entrenamiento de hoy.",
   "section_daily_spark": "Cita del Día",
   "section_reflection_prompt": "Reflexión del Día",

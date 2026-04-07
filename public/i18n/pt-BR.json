@@ -20,6 +20,7 @@
   "content_fallback_note": "Exibindo EN ({lang} indisponível)",
   "retry": "Tentar novamente",
   "prompt_heading": "Convite à Reflexão",
+  "prompt_training_bridge": "A citação e este convite foram pensados para funcionar juntos. A citação oferece uma faísca — um sentimento ou ideia para levar consigo — enquanto o convite lhe dá direção, convidando você a conectar esse mesmo espírito a um aspecto concreto do seu treino: uma sessão que está preparando, um desafio que está enfrentando ou uma qualidade que quer fortalecer.",
   "prompt_guide": "Deixe o convite guiar uma breve reflexão, então leve uma ação para o seu treino de hoje.",
   "section_daily_spark": "Citação do Dia",
   "section_reflection_prompt": "Convite à Reflexão",
