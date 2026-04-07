@@ -13,10 +13,24 @@ type DayEntry = {
 
 type QuoteData = Record<string, DayEntry>;
 
+type TranslationData = Record<string, string>;
+
 const DATA_URL = `/data/${new Date().getFullYear()}.json`;
 const SUPPORTED_LANGS: LanguageKey[] = ["en", "es", "eu", "fr", "de", "pt-BR"];
 const STORAGE_THEME_KEY = "sportspark_theme";
 const STORAGE_LANG_KEY = "sportspark_lang";
+
+const LANG_LOCALE: Record<LanguageKey, string> = {
+  "en": "en-US",
+  "es": "es-ES",
+  "eu": "eu-ES",
+  "fr": "fr-FR",
+  "de": "de-DE",
+  "pt-BR": "pt-BR"
+};
+
+const translationCache = new Map<LanguageKey, TranslationData>();
+let activeTrans: TranslationData = {};
 
 const dateEl = document.querySelector<HTMLElement>("[data-date]");
 const timeEl = document.querySelector<HTMLElement>("[data-time]");
@@ -62,16 +76,17 @@ function clampDate(date: Date): Date {
 
 function updateTime() {
   if (!timeEl) return;
-  const formatter = new Intl.DateTimeFormat(navigator.language, {
+  const formatter = new Intl.DateTimeFormat(LANG_LOCALE[activeLang], {
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit"
+    second: "2-digit",
+    hour12: false
   });
   timeEl.textContent = formatter.format(new Date());
 }
 
 function formatDate(date: Date): string {
-  const formatter = new Intl.DateTimeFormat(navigator.language, {
+  const formatter = new Intl.DateTimeFormat(LANG_LOCALE[activeLang], {
     weekday: "long",
     month: "long",
     day: "numeric"
@@ -79,12 +94,45 @@ function formatDate(date: Date): string {
   return formatter.format(date);
 }
 
+async function loadTranslations(lang: LanguageKey): Promise<TranslationData> {
+  if (translationCache.has(lang)) return translationCache.get(lang)!;
+  try {
+    const res = await fetch(`/i18n/${lang}.json`);
+    if (!res.ok) throw new Error("Translation not found");
+    const data = (await res.json()) as TranslationData;
+    translationCache.set(lang, data);
+    return data;
+  } catch {
+    if (lang !== "en") return loadTranslations("en");
+    return {};
+  }
+}
+
+function applyTranslations(t: TranslationData) {
+  activeTrans = t;
+  document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((el) => {
+    const key = el.dataset.i18n!;
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  document.querySelectorAll<HTMLElement>("[data-i18n-aria]").forEach((el) => {
+    const key = el.dataset.i18nAria!;
+    if (t[key] !== undefined) el.setAttribute("aria-label", t[key]);
+  });
+  if (t.page_title) document.title = t.page_title;
+  const descEl = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+  if (descEl && t.page_description) descEl.setAttribute("content", t.page_description);
+  document.documentElement.lang = activeLang;
+}
+
 function setLang(lang: LanguageKey) {
   activeLang = lang;
   localStorage.setItem(STORAGE_LANG_KEY, lang);
   document.documentElement.lang = lang;
   updateLangButtons();
-  renderContent();
+  loadTranslations(lang).then((t) => {
+    applyTranslations(t);
+    renderContent();
+  });
 }
 
 function getInitialLanguage(): LanguageKey {
@@ -166,30 +214,30 @@ function updateTodayState() {
   const isEnd = nextBtn?.disabled ?? false;
   todayBtn.classList.toggle("hidden", isToday);
   if (isToday) {
-    dayIndicatorEl.textContent = "Today";
+    dayIndicatorEl.textContent = activeTrans.day_indicator_today ?? "Today";
     return;
   }
   if (isStart) {
-    dayIndicatorEl.textContent = "Start of year";
+    dayIndicatorEl.textContent = activeTrans.day_indicator_start ?? "Start of year";
     return;
   }
   if (isEnd) {
-    dayIndicatorEl.textContent = "Today";
+    dayIndicatorEl.textContent = activeTrans.day_indicator_today ?? "Today";
     return;
   }
   dayIndicatorEl.textContent = "";
 }
 
-function setErrorState(message: string) {
-  if (quoteEl) quoteEl.textContent = "Unable to load today\'s spark.";
-  if (promptEl) promptEl.textContent = "Please refresh or try again later.";
+function setErrorState(_message: string) {
+  if (quoteEl) quoteEl.textContent = activeTrans.error_quote_fallback ?? "Unable to load today's spark.";
+  if (promptEl) promptEl.textContent = activeTrans.error_prompt_fallback ?? "Please refresh or try again later.";
   if (authorEl) authorEl.textContent = "";
   if (langNoteEl) langNoteEl.textContent = "";
   if (errorSummaryEl) {
     errorSummaryEl.classList.remove("hidden");
     const summaryText = errorSummaryEl.querySelector("p");
     if (summaryText) {
-      summaryText.textContent = message;
+      summaryText.textContent = activeTrans.error_message ?? _message;
     }
   }
   retryBtn?.classList.remove("hidden");
@@ -211,8 +259,8 @@ function renderContent() {
   const fallback = entry?.languages?.en;
 
   if (!entry) {
-    quoteEl.textContent = "No content for this day.";
-    promptEl.textContent = "Check back soon for a fresh prompt.";
+    quoteEl.textContent = activeTrans.content_missing ?? "No content for this day.";
+    promptEl.textContent = activeTrans.content_missing_prompt ?? "Check back soon for a fresh prompt.";
     if (authorEl) authorEl.textContent = "";
     if (langNoteEl) langNoteEl.textContent = "";
     announce(`No content available for ${dateEl.textContent}.`);
@@ -236,12 +284,13 @@ function renderContent() {
       authorEl.textContent = fallback.author ? `\u2014 ${fallback.author}` : "";
     }
     if (langNoteEl) {
-      langNoteEl.textContent = `Showing EN (missing ${activeLang.toUpperCase()})`;
+      const note = activeTrans.content_fallback_note ?? "Showing EN (missing {lang})";
+      langNoteEl.textContent = note.replace("{lang}", activeLang.toUpperCase());
     }
     announce(`Content unavailable in ${activeLang}. Showing English.`);
   } else {
-    quoteEl.textContent = "No content for this day.";
-    promptEl.textContent = "Check back soon for a fresh prompt.";
+    quoteEl.textContent = activeTrans.content_missing ?? "No content for this day.";
+    promptEl.textContent = activeTrans.content_missing_prompt ?? "Check back soon for a fresh prompt.";
     if (authorEl) authorEl.textContent = "";
     if (langNoteEl) langNoteEl.textContent = "";
     announce(`No content available for ${dateEl.textContent}.`);
@@ -365,5 +414,6 @@ setInterval(updateTime, 1_000);
 initTheme();
 updateLangButtons();
 bindEvents();
+loadTranslations(activeLang).then(applyTranslations);
 loadData();
 

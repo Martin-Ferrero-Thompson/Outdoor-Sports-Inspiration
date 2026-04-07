@@ -65,7 +65,8 @@ describe("runtime behavior", () => {
   it("supports retry flow after initial load failure", async () => {
     vi.setSystemTime(new Date("2026-06-15T10:00:00Z"));
     vi.spyOn(globalThis, "fetch")
-      .mockResolvedValueOnce(createResponse({}, false))
+      .mockResolvedValueOnce(createResponse({}, true)) // i18n/en.json (translations)
+      .mockResolvedValueOnce(createResponse({}, false)) // data fetch fails
       .mockResolvedValueOnce(
         createResponse({
           "2026-06-15": {
@@ -101,7 +102,7 @@ describe("runtime behavior", () => {
     expect(summary?.classList.contains("hidden")).toBe(true);
     expect(retry?.classList.contains("hidden")).toBe(true);
     expect(quote?.textContent).toBe("Run with purpose.");
-    expect(globalThis.fetch).toHaveBeenCalledTimes(2);
+    expect(globalThis.fetch).toHaveBeenCalledTimes(3);
   });
 
   it("shows boundary state at start and end of year", async () => {
