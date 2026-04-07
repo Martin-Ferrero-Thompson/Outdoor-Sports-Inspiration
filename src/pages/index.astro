@@ -1,0 +1,108 @@
+---
+import app from "../scripts/app.ts?url";
+import "../styles/global.css";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SportSpark — Daily Sports Inspiration</title>
+    <meta name="description" content="Daily sports inspirational quotes and reflective prompts. A new spark every day of the year." />
+    <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="text-ink">
+    <div class="spark-accent fixed inset-x-0 top-0 z-50 h-1" aria-hidden="true"></div>
+    <div class="min-h-screen px-4 pb-6 pt-7 sm:px-8 lg:px-10">
+      <a href="#main" class="skip-link">Skip to main content</a>
+      <header class="mx-auto flex w-full max-w-6xl flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div class="flex items-center gap-4">
+          <div class="spark-accent flex h-11 w-11 items-center justify-center rounded-2xl shadow-panel" aria-label="SportSpark logo" role="img">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" class="h-6 w-6 text-white" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-muted">Daily Sports Inspiration</p>
+            <h1 class="font-display text-3xl font-semibold tracking-tight">SportSpark</h1>
+          </div>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
+          <fieldset class="spark-surface flex items-center gap-3 rounded-2xl px-4 py-2">
+            <legend class="shrink-0 text-xs font-semibold uppercase tracking-[0.3em] text-muted">Theme</legend>
+            <div class="flex gap-1.5">
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-theme="light" aria-label="Light theme">Light</button>
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-theme="dark" aria-label="Dark theme">Dark</button>
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-theme="system" aria-label="System theme">System</button>
+            </div>
+          </fieldset>
+          <fieldset class="spark-surface flex items-center gap-3 rounded-2xl px-4 py-2">
+            <legend class="shrink-0 text-xs font-semibold uppercase tracking-[0.3em] text-muted">Language</legend>
+            <div class="flex flex-wrap gap-1.5">
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-lang="en" aria-label="English" aria-describedby="lang-note">EN</button>
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-lang="es" aria-label="Spanish" aria-describedby="lang-note">ES</button>
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-lang="eu" aria-label="Euskara" aria-describedby="lang-note">EU</button>
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-lang="fr" aria-label="French" aria-describedby="lang-note">FR</button>
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-lang="de" aria-label="German" aria-describedby="lang-note">DE</button>
+              <button class="focus-ring touch-target rounded-full border border-transparent px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em]" data-lang="pt-BR" aria-label="Brazilian Portuguese" aria-describedby="lang-note">PT-BR</button>
+            </div>
+          </fieldset>
+        </div>
+      </header>
+
+      <main id="main" class="mx-auto mt-8 grid w-full max-w-6xl gap-6 lg:grid-cols-[1fr_auto_1fr]" aria-busy="false" data-main>
+        <section class="spark-surface animate-float-in flex flex-col gap-6 rounded-3xl p-6 sm:p-8 lg:min-h-[32rem]" role="region" aria-label="Daily inspiration">
+          <h2 class="sr-only">Daily Spark Quote</h2>
+          <div class="flex flex-col gap-1">
+            <div class="flex items-end justify-between gap-4">
+              <p class="font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl" data-date>Loading date</p>
+              <p class="font-display text-xl font-semibold tabular-nums text-accent2 sm:text-2xl" data-time aria-label="Current time">--:--</p>
+            </div>
+          </div>
+          <div class="spark-divider h-1 w-24 rounded-full" aria-hidden="true"></div>
+          <div class="flex flex-1 flex-col gap-3">
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-muted">Today&#39;s Spark</p>
+            <p class="spark-quote text-xl font-semibold leading-snug sm:text-2xl lg:text-3xl" data-quote>Loading quote</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-accent1" data-author></p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3" role="group" aria-label="Day navigation">
+            <button class="focus-ring touch-target spark-nav-btn rounded-full border px-5 py-2 text-sm font-semibold" data-prev aria-label="Previous day"><span aria-hidden="true">←</span> Prev</button>
+            <button class="focus-ring touch-target spark-nav-btn rounded-full border px-5 py-2 text-sm font-semibold" data-next aria-label="Next day">Next <span aria-hidden="true">→</span></button>
+            <button class="focus-ring touch-target hidden rounded-full border border-accent1 bg-accent1/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent1" data-today aria-label="Jump to today">Today</button>
+            <span class="text-xs font-semibold uppercase tracking-[0.3em] text-muted" data-day-indicator role="status" aria-live="polite"></span>
+          </div>
+          <div class="hidden rounded-2xl border border-accent1/40 bg-accent1/10 px-4 py-3" data-error-summary role="status" aria-live="polite">
+            <p class="text-sm font-semibold text-accent1">We could not load today&#39;s inspiration. Try again.</p>
+          </div>
+          <button class="focus-ring touch-target hidden w-fit rounded-full border border-accent1 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent1" data-retry aria-label="Retry loading inspiration">
+            Retry
+          </button>
+        </section>
+
+        <div class="hidden w-1.5 rounded-full spark-divider lg:block" aria-hidden="true"></div>
+
+        <section class="spark-surface animate-float-in-delayed flex flex-col gap-5 rounded-3xl p-6 sm:p-8 lg:min-h-[32rem]" role="region" aria-label="Reflection prompt">
+          <h2 class="sr-only">Thoughtful Prompt</h2>
+          <div class="flex items-center justify-between gap-4">
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-accent2">Thoughtful Prompt</p>
+            <span class="text-xs font-semibold uppercase tracking-[0.3em] text-muted" data-lang-note id="lang-note" role="status" aria-live="polite"></span>
+          </div>
+          <p class="text-lg leading-relaxed sm:text-xl" data-prompt>Loading prompt</p>
+          <div class="h-1 w-16 rounded-full bg-accent2/60" aria-hidden="true"></div>
+          <p class="text-sm text-muted">Let the prompt guide a short reflection, then carry one action into your training today.</p>
+        </section>
+      </main>
+
+      <noscript>
+        <div class="mx-auto mt-8 max-w-3xl rounded-2xl border border-accent1 bg-white/80 p-4 text-center text-sm font-semibold text-accent1">
+          Please enable JavaScript to view the daily inspiration.
+        </div>
+      </noscript>
+    </div>
+
+    <script type="module" src={app}></script>
+  </body>
+</html>

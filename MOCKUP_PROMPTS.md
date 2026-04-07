@@ -1,0 +1,52 @@
+# UI Mockup Prompt Set — SportSpark
+
+This file contains ready-to-use prompts to generate high-fidelity UI mockups for the SportSpark daily inspiration web app. The prompts are designed for a mobile-first layout with a sporty, energetic aesthetic and align with the current Astro + Tailwind implementation.
+
+## Mobile Screen (390x844)
+
+```text
+Use case: ui-mockup
+Asset type: mobile-first web app screen mockup
+Primary request: high-fidelity UI mockup for a daily sports inspirational quotes web app called “SportSpark”. It uses a two-panel desk-calendar concept: top panel shows current date/time and the day’s inspirational quote; bottom panel shows a longer thoughtful prompt. Include a light/dark/system theme toggle and a language switcher (EN, ES, EU, FR, DE, PT-BR) in the header area. It should look mobile-first and premium, sporty energetic style.
+Scene/backdrop: clean UI canvas, no device frame
+Style/medium: modern high-fidelity UI mockup
+Composition/framing: portrait screen, 390x844 layout; stacked panels (top: date/time + quote, bottom: prompt). Use bold, kinetic shapes or accents to suggest motion.
+Lighting/mood: energetic, confident, optimistic
+Color palette: bright sporty accents (coral/orange + electric teal), balanced with off-white backgrounds and charcoal text
+Materials/textures: subtle grain or soft gradient background, no heavy textures
+Text (verbatim):
+- App name: “SportSpark”
+- Tagline: “Daily Sports Inspiration”
+- Date/time: “Tuesday, April 7” and “09:24”
+- Quote headline label: “Today’s Spark”
+- Quote: “Discipline is the bridge between training and triumph.”
+- Quote author: “— Coach Rivera”
+- Prompt label: “Thoughtful Prompt”
+- Prompt: “Think about one moment this season when you chose effort over ease. What did that choice teach you about who you are becoming, and how could that lesson shape your next challenge?”
+- Toggles: “Theme”, “Light / Dark / System”
+- Language: “EN  ES  EU  FR  DE  PT-BR”
+- Nav buttons: “Prev” and “Next”
+- Today chip (only if not today): “Today”
+Constraints: crisp typography, strong hierarchy, clear navigation buttons for previous/next day, include a subtle “Today” indicator when browsing away from current day
+Avoid: device frames, logos, watermarks, fuzzy text
+```
+
+## Tablet Screen (820x1180)
+
+```text
+Use case: ui-mockup
+Asset type: tablet screen mockup (820x1180)
+Primary request: same app and content as above, but show two panels side-by-side (left: date/time + quote; right: prompt). Keep sporty energetic accents. Make typography larger and allow more breathing room.
+Constraints: include previous/next day buttons and a subtle “Today” indicator
+Avoid: device frames, logos, watermarks, fuzzy text
+```
+
+## Desktop Screen (1440x900)
+
+```text
+Use case: ui-mockup
+Asset type: desktop web screen mockup (1440x900)
+Primary request: same app and content as above. Two-panel desk-calendar layout side-by-side with a central gutter. Show theme toggle and language switcher in a top bar. Add subtle animated feel via angled accent shapes or a dynamic gradient band.
+Constraints: strong typographic hierarchy, clear navigation buttons, left panel date/time prominent
+Avoid: device frames, logos, watermarks, fuzzy text
+```
